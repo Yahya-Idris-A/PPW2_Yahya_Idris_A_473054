@@ -1,0 +1,80 @@
+body{
+    background-color: #c0392b;
+}
+
+.meta-post {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.header header {
+    background-color: rgb(43, 40, 40);
+    padding: 10px 20px;
+    color: #fff;
+}
+
+nav.menus {
+    background-color: rgb(58, 6, 86);
+    padding: 10px;
+}
+
+nav.menus ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav.menus ul li {
+    display: inline-block;
+}
+
+nav.menus ul li a {
+    display: block;
+    padding: 3px 7px;
+    color: #fff;
+}
+
+nav.menus ul li a:hover, nav.menus ul li a:focus {
+    text-decoration: none;
+    background-color: #c0392b;
+    color: #fff;
+}
+
+article.posts {
+    padding: 10px 20px;
+    background-color: rgb(43, 40, 40);
+    margin-top: 20px;
+    color:#fff ;
+}
+
+img {
+    width: 50%;
+}
+
+aside.widgets {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: rgb(43, 40, 40);
+    color: #fff;
+}
+
+aside.widgets ul {
+    margin: 0;
+    padding: 0;
+}
+
+aside.widgets li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget-title {
+    border-bottom: 4px solid #e74c3c;
+    padding-bottom: 4px;
+}
+
+footer.copyright {
+    padding: 10px 20px;
+    font-size: 12px;
+    color: #fff;
+}

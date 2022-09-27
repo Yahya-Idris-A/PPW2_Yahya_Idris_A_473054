@@ -1,0 +1,26 @@
+body{
+    background-color: #251e1d;
+}
+
+.meta-post {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+article.posts {
+    padding: 10px 20px;
+    background-color: rgb(31, 17, 68);
+    margin-top: 20px;
+    color:#fff ;
+}
+
+img {
+    width: 50%;
+}
+
+.color_post{
+    padding: 10px 20px;
+    background-color: rgb(31, 17, 68);
+    margin-top: 20px;
+    color:#fff ;
+}
