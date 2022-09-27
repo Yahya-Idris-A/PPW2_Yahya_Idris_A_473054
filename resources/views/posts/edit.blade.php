@@ -41,7 +41,7 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button><br><br>
-                <a href="/posts/{{ $posts->id }}">Kembali</a>
+                <a href="/posts/{{ $posts->id }}">Back</a>
             </form>
         </div>
     </div>

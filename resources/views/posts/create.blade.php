@@ -40,7 +40,7 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button><br><br>
-                <a href="/posts">Kembali</a>
+                <a href="/posts">Back</a>
             </form>
         </div>
     </div>

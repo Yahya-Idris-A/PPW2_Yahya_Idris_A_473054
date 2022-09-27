@@ -14,7 +14,7 @@
             <input type="hidden" name="id" value="{{ $posts->id }}"> <br />
             <button type="submit" class="btn btn-danger">Delete</button>
             </form><br>
-            <a href="/posts">Kembali</a>
+            <a href="/posts">Back</a>
         </div>
     </div>
 @endsection
