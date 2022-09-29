@@ -10,7 +10,7 @@
             <span><i class="bi bi-calendar"></i> 12 April 2022</span>
         </div>
         <div class="content">
-            <img src="https://www.fcbarcelona.com/photo-resources/2022/08/31/4866ddd2-7c0f-420b-a134-32d4430f2550/WhatsApp-Image-2022-08-31-at-12.18.19.jpeg?width=1200&height=750">
+            <img class="img" src="https://www.fcbarcelona.com/photo-resources/2022/08/31/4866ddd2-7c0f-420b-a134-32d4430f2550/WhatsApp-Image-2022-08-31-at-12.18.19.jpeg?width=1200&height=750">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
                 laoreet sapien eu velit elementum, at facilisis urna facilisis. 
                 ellentesque quis erat vulputate, dignissim lorem eu, facilisis 

@@ -1,5 +1,5 @@
 body{
-    background-color: #251e1d;
+    background-color: #ffffff;
 }
 
 .meta-post {
@@ -14,13 +14,12 @@ article.posts {
     color:#fff ;
 }
 
-img {
+.img {
     width: 50%;
 }
 
 .color_post{
     padding: 10px 20px;
     background-color: rgb(31, 17, 68);
-    margin-top: 20px;
     color:#fff ;
 }

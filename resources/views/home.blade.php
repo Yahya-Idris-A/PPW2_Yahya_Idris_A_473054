@@ -10,7 +10,7 @@
             <span><i class="bi bi-calendar"></i> 12 April 2022</span>
         </div>
         <div class="content">
-            <img src="https://img.okezone.com/content/2022/09/12/261/2666024/bayern-munich-vs-barcelona-julian-nagelsmann-ngaku-tak-tertekan-meski-die-toren-tengah-tampil-buruk-sEiUFRzG67.JPG">
+            <img class="img" src="https://img.okezone.com/content/2022/09/12/261/2666024/bayern-munich-vs-barcelona-julian-nagelsmann-ngaku-tak-tertekan-meski-die-toren-tengah-tampil-buruk-sEiUFRzG67.JPG">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
                 laoreet sapien eu velit elementum, at facilisis urna facilisis. 
                 ellentesque quis erat vulputate, dignissim lorem eu, facilisis 

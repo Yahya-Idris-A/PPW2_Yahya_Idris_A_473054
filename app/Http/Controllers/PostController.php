@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         return view('posts.index', [
             "title" => "Projects",
-            "posts" => Post::orderBy('title', 'asc')->get()
+            "posts" => Post::orderBy('title', 'asc')->paginate(10)
         ]);
     }
 
@@ -26,7 +26,7 @@ class PostController extends Controller
     {
         return view('projects', [
             "title" => "Projects",
-            "posts" => Post::orderBy('title', 'asc')->get()
+            "posts" => Post::orderBy('title', 'asc')->paginate(10)
         ]);
     }
 
@@ -99,7 +99,7 @@ class PostController extends Controller
     public function edit($id)
     {
         return view('posts.edit', [
-            'title' => "Detail Project",
+            'title' => "Edit Project",
             'posts' => Post::find($id)
         ]);
     }

@@ -10,7 +10,7 @@
             <span><i class="bi bi-calendar"></i> 12 April 2022</span>
         </div>
         <div class="content">
-            <img src="https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9d04d7331ca46945/62fe26232120ab49022216da/GettyImages-1413645723.jpg?auto=webp&format=jpg&quality=100">
+            <img class="img" src="https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9d04d7331ca46945/62fe26232120ab49022216da/GettyImages-1413645723.jpg?auto=webp&format=jpg&quality=100">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
                 laoreet sapien eu velit elementum, at facilisis urna facilisis. 
                 ellentesque quis erat vulputate, dignissim lorem eu, facilisis 
