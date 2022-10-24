@@ -143,4 +143,9 @@ class PostController extends Controller
         return redirect('posts')->with('success', 'Berhasil dihapus!!');
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth', ["except" => ["index", "show"]]);
+    }
+
 }
