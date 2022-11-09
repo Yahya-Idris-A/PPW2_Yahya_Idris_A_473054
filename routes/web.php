@@ -5,6 +5,7 @@ use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\Auth\LoginController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo asset('Storage/file.txt');
 });
 
 Route::get('/home', function () {
@@ -65,3 +66,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
 Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
+Storage::disk('local')->put('file.txt', 'Contents');

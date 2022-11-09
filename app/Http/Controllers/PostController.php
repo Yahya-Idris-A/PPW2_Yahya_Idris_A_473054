@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 
 date_default_timezone_set("Asia/Jakarta");
 
@@ -52,21 +54,35 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-        [
-            'title' => 'required|unique:posts,title|max:100',
-            'description' => 'required'
-        ],
-        [
-            'title.required' => 'The title is required.',
-            'title.unique' => 'The title has already been taken.',
-            'title.max' => 'The title must not be greater than 100 characters.',
-            'description.required' => 'The description is required.'
-        ]);
+            [
+                'title' => 'required|unique:posts,title|max:100',
+                'description' => 'required',
+                'picture' => 'image|nullable|max:10240'
+            ],
+            [
+                'title.required' => 'The title is required.',
+                'title.unique' => 'The title has already been taken.',
+                'title.max' => 'The title must not be greater than 100 characters.',
+                'description.required' => 'The description is required.',
+                'picture.max' => 'The picture is too big, please choose another picture'
+            ]
+        );
+
+        if ($request->hasFile('picture')) {
+            $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        } else {
+            $filenameSimpan = 'noimage.png';
+        }
         $post = new Post;
+        $post->picture = $filenameSimpan;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
-        return redirect('posts')->with('success', 'Berhasil dipost!!');
+        return redirect('posts')->with('success', 'Berhasil Menambah Project Baru!!');
     }
 
     /**
@@ -114,20 +130,47 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|unique:posts,title|max:100',
-            'description' => 'required'
+            'title' => 'required|max:100',
+            'description' => 'required',
+            'picture' => 'image|nullable|max:10240'
         ]);
-        Post::where('id', $id)->update([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
-        return redirect('posts')->with('success', 'Berhasil diupdate!!');
+        // Cara 1
+        // if ($request->hasFile('picture')) {
+        //     $filenameWithExt = $request->file('picture')->getClientOriginalName();
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     $extension = $request->file('picture')->getClientOriginalExtension();
+        //     $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+        //     $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        //     $post = Post::find($id);
+        //     File::delete(public_path() . '/public/posts_image/' . $post->picture);
+        // } else {
+        //     $filenameSimpan = 'noimage.png';
+        // }
+        // Post::where('id', $id)->update([
+        //     'picture' => $filenameSimpan,
+        //     'title' => $request->title,
+        //     'description' => $request->description
+        // ]);
+        // return redirect('posts')->with('success', 'Berhasil diupdate!!');
         // cara lainnya
-        // $post = Post::find($id);
-        // $post->title = $request->input('title');
-        // $post->description = $request->input('description')
-        // $post->save();
-
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        if ($request->hasFile('picture')) {
+            if ($post->picture) {
+                unlink('storage/posts_image/' . $post->picture);
+            }
+            $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        } else {
+            $filenameSimpan = 'noimage.png';
+        }
+        $post->picture = $filenameSimpan;
+        $post->update();
+        return redirect('posts')->with('success', 'Berhasil diupdate!!');
     }
 
     /**
@@ -139,6 +182,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        if ($post->picture) {
+            unlink('storage/posts_image/' . $post->picture);
+        }
         $post->delete();
         return redirect('posts')->with('success', 'Berhasil dihapus!!');
     }
@@ -147,5 +193,4 @@ class PostController extends Controller
     {
         $this->middleware('auth', ["except" => ["index", "show"]]);
     }
-
 }
