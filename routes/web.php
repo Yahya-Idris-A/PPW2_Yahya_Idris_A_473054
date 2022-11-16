@@ -35,6 +35,8 @@ Route::get('/projects', [PostController::class, 'index_projects']);
 
 Route::resource('posts', 'App\Http\Controllers\PostController');
 
+Route::resource('gallery', 'App\Http\Controllers\GalleryController');
+
 Auth::routes([
     'reset' => true,
 ]);

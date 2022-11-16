@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Intervention\Image\Facades\Image;
 
 
 date_default_timezone_set("Asia/Jakarta");
@@ -68,15 +69,45 @@ class PostController extends Controller
             ]
         );
 
+        // if ($request->hasFile('picture')) {
+        //     $filenameWithExt = $request->file('picture')->getClientOriginalName();
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     $extension = $request->file('picture')->getClientOriginalExtension();
+        //     $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+        //     $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        // } else {
+        //     $filenameSimpan = 'noimage.png';
+        // }
         if ($request->hasFile('picture')) {
             $filenameWithExt = $request->file('picture')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('picture')->getClientOriginalExtension();
-            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+
+            $basename = uniqid() . time();
+            // $smallFilename  = "small_{$basename}.{$extension}";
+            // $filenameSimpan  = "medium_{$basename}.{$extension}";
+            $filenameSimpan  = "large_{$basename}.{$extension}";
+
+            // $filenameSimpan = "{$basename}.{$extension}";
+            // $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+
+            // $request->file('picture')->storeAs("public/posts_image", $smallFilename);
+            $request->file('picture')->storeAs("public/posts_image", $filenameSimpan);
+            // $request->file('picture')->storeAs("public/posts_image", $largeFilename);
+
+            // small
+            // $smallThumbnailPath = storage_path("app/public/posts_image/{$smallFilename}");
+            // $this->createThumbnail($smallThumbnailPath, 150, 93);
+            //medium
+            // $mediumThumbnailPath = storage_path("app/public/posts_image/{$filenameSimpan}");
+            // $this->createThumbnail($mediumThumbnailPath, 300, 185);
+            //large
+            $largeThumbnailPath = storage_path("app/public/posts_image/{$filenameSimpan}");
+            $this->createThumbnail($largeThumbnailPath, 550, 340);
         } else {
             $filenameSimpan = 'noimage.png';
         }
+
         $post = new Post;
         $post->picture = $filenameSimpan;
         $post->title = $request->input('title');
@@ -84,6 +115,15 @@ class PostController extends Controller
         $post->save();
         return redirect('posts')->with('success', 'Berhasil Menambah Project Baru!!');
     }
+
+    public function createThumbnail($path, $width, $height)
+    {
+        $img = Image::make($path)->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save($path);
+    }
+
 
     /**
      * Display the specified resource.
@@ -134,7 +174,7 @@ class PostController extends Controller
             'description' => 'required',
             'picture' => 'image|nullable|max:10240'
         ]);
-        // Cara 1
+        // Cara 1 tidak worth it pas update file gambar
         // if ($request->hasFile('picture')) {
         //     $filenameWithExt = $request->file('picture')->getClientOriginalName();
         //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

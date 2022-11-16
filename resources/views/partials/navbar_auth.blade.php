@@ -28,7 +28,10 @@
                     <a class="nav-link" href="/posts">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/send-email">Send Email</a>
+                    <a class="nav-link" href="/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/send-email">Email</a>
                 </li>
             </ul>
 

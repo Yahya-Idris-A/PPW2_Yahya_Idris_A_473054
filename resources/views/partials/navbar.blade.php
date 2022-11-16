@@ -28,7 +28,10 @@
                     <a class="nav-link {{($title === "Projects") ? 'active' : ''}}" href="/posts">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{($title === "Send Email") ? 'active' : ''}}" href="/send-email">Send Email</a>
+                    <a class="nav-link {{($title === "Gallery") ? 'active' : ''}}" href="/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{($title === "Send Email") ? 'active' : ''}}" href="/send-email">Email</a>
                 </li>
             </ul>
 
