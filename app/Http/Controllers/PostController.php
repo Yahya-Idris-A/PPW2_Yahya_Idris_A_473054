@@ -108,10 +108,18 @@ class PostController extends Controller
             $filenameSimpan = 'noimage.png';
         }
 
+        $paragraph = explode("\r\n", $request->input('description'));
+        $description = "";
+        for ($i = 0; $i <= count($paragraph) - 1; $i++) {
+            $part = str_replace($paragraph[$i], $paragraph[$i] . "<br>", $paragraph[$i]);
+            $description .= $part;
+        }
+
         $post = new Post;
         $post->picture = $filenameSimpan;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
+        // $post->description = $description;
         $post->save();
         return redirect('posts')->with('success', 'Berhasil Menambah Project Baru!!');
     }

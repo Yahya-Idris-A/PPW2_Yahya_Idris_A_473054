@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GreetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,5 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
 Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
 Storage::disk('local')->put('file.txt', 'Contents');
+Route::get('/greet', [GreetController::class, 'greet'])->name('greeting');
+Route::get('/gallery2', [GreetController::class, 'gallery'])->name('gallery');
